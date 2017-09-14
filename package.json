@@ -1,0 +1,20 @@
+{
+  "name": "makebot_prototype",
+  "version": "1.0.0",
+  "description": "Bot that does sign in for Make School students",
+  "main": "makebot.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Meeshbhoombah/signinbot.git"
+  },
+  "keywords": [
+    "clear"
+  ],
+  "author": "Rohan Mishra",
+  "license": "ISC"
+}
