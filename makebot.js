@@ -9,3 +9,6 @@ if (!process.env.token) {
     process.exit(1);
 }
 
+var Botkit = require("node_modules/botkit.js");
+var os = require("os");
+var cron = require("cron").CronJob;
