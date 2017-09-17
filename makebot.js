@@ -11,7 +11,7 @@ var SLACK_TOKEN = require('./tokens').SLACK_TOKEN;
 // Modules
 var Botkit = require('botkit');
 var os = require('os');
-var cron = require('node-cron').CronJob;
+var cron = require('cron').CronJob;
 var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGO_URI});
 
 var controller = Botkit.slackbot({
