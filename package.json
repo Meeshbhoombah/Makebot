@@ -5,6 +5,7 @@
   "main": "makebot.js",
   "dependencies": {
     "botkit": "^0.6.0",
+    "botkit-storage-mongo": "^1.0.7",
     "node-cron": "^1.2.1"
   },
   "devDependencies": {},

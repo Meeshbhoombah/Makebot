@@ -5,10 +5,14 @@ Makebot.js - a Slackbot for Make School's Product College slack
 
 */
 
+var MONGO_URI = require('./tokens').MONGO_URI;
+var SLACK_TOKEN = require('./tokens').SLACK_TOKEN;
+
+// Modules
 var Botkit = require('botkit');
 var os = require('os');
 var cron = require('node-cron').CronJob;
-var mongoStorage = require('botkit-storage-mongo')({mongoUri: global.MONGO_URI});
+var mongoStorage = require('botkit-storage-mongo')({mongoUri: });
 
 var controller = Botkit.slackbot({
     debug: true,
