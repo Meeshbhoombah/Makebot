@@ -11,6 +11,7 @@ if (!process.env.token) {
 }
 
 var Botkit = require("node_modules/botkit.js");
+// TODO - Add Firebase URI
 firebaseStorage = require('botkit-storage-firebase')({firebase_uri: '...'}),
     controller = Botkit.slackbot({
         storage: firebaseStorage
@@ -20,6 +21,7 @@ var cron = require("cron").CronJob;
 
 var controller = Botkit.slackbot({
     debug: true,
+    require-delivery: true
 });
 
 var makebot = controller.spawn({
@@ -28,9 +30,9 @@ var makebot = controller.spawn({
 
 // Send sign in message at 9:00 AM, repeat from M to F
 var signInJob = new CronJob({
-    cronTime: '00 30 11 * * 1-5',
+    cronTime: '00 00 09 * * 1-5',
     onTick: function() {
-        
+        controller.on    
     },
     start: false,
     timeZone: 'America/Los_Angeles'
