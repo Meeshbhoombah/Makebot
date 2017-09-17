@@ -5,6 +5,6 @@ Makebot.js - a simple Slackbot that sends a message with Buttons at 9 AM everyda
 */
 
 if (!process.env.token) {
-    console.log("Specefiy token in the environment");
+    console.log("Specefiy token: ");
     process.exit(1);
 }
