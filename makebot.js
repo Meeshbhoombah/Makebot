@@ -8,3 +8,4 @@ if (!process.env.token) {
     console.log("Specefiy token: ");
     process.exit(1);
 }
+
