@@ -21,8 +21,19 @@ var controller = Botkit.slackbot({
     storage: firebaseStorage
 });
 
-var bot = controller.spawn({
+var makebot = controller.spawn({
     token: process.env.token
 }).StartRTM();
 
+// Send sign in message at 9:00 AM, repeat from M to F
+var signInJob = new CronJob({
+    cronTime: '00 30 11 * * 1-5',
+    onTick: function() {
+        
+    },
+    start: false,
+    timeZone: 'America/Los_Angeles'
+});
+
+job.start();
 
