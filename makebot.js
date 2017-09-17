@@ -22,10 +22,10 @@ var controller = Botkit.slackbot({
 
 var makebot = controller.spawn({
     token: SLACK_TOKEN
-}).StartRTM();
+}).startRTM();
 
 // Save all Slack users to database
-bot.startRTM(function(err, makebot, payload){
+makebot.startRTM(function(err, makebot, payload){
     if (err) {
         throw new Error('Unable to connect to Slack channel.');
     } else {
