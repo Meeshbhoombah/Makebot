@@ -5,9 +5,9 @@ Makebot.js - a Slackbot for Make School's Product College slack
 
 */
 
-var Botkit = require("botkit");
-var os = require("os");
-var cron = require("cron").CronJob;
+var Botkit = require('botkit');
+var os = require('os');
+var cron = require('node-cron').CronJob;
 var mongoStorage = require('botkit-storage-mongo')({mongoUri: global.MONGO_URI});
 
 var controller = Botkit.slackbot({
@@ -30,7 +30,7 @@ bot.startRTM(function(err, makebot, payload){
 });
 
 // Send sign in message at 9:00 AM, repeat from M to F
-var signInJob = new CronJob({
+var signInJob = new cron({
     cronTime: '00 00 09 * * 1-5',
     onTick: function() {
            
