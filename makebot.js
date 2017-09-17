@@ -19,7 +19,7 @@ var Botkit = require("botkit");
 // TODO - Add Firebase URI
 var os = require("os");
 var cron = require("cron").CronJob;
-var mongoStorage = require('botkit-storage-mongo')({mongoUri: '...'});
+var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.uri});
 var controller = Botkit.slackbot({
     debug: true,
     require_delivery: true,
