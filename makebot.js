@@ -8,7 +8,7 @@ Makebot.js - a Slackbot for Make School's Product College slack
 var Botkit = require("botkit");
 var os = require("os");
 var cron = require("cron").CronJob;
-var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.uri});
+var mongoStorage = require('botkit-storage-mongo')({mongoUri: global.MONGO_URI});
 
 var controller = Botkit.slackbot({
     debug: true,
@@ -17,7 +17,7 @@ var controller = Botkit.slackbot({
 });
 
 var makebot = controller.spawn({
-    token: process.env.token
+    token: global.SLACK_TOKEN
 }).StartRTM();
 
 // Save all Slack users to database
