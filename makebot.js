@@ -13,6 +13,8 @@ var Botkit = require('botkit');
 var os = require('os');
 var cron = require('cron').CronJob;
 var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGO_URI});
+var google = require('googleapis');
+var calendar = google.calendar('v3');
 
 var controller = Botkit.slackbot({
     debug: true,
@@ -43,5 +45,5 @@ var signInJob = new cron({
     timeZone: 'America/Los_Angeles'
 });
 
-job.start();
+signInJob.start();
 
