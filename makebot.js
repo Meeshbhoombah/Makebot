@@ -11,14 +11,15 @@ if (!process.env.token) {
 }
 
 var Botkit = require("node_modules/botkit.js");
-// TODO - Add Firebase URI
-var firebaseStorage = require('botkit-storage-firebase')({firebase_uri: '...'}),
+firebaseStorage = require('botkit-storage-firebase')({firebase_uri: '...'}),
+    controller = Botkit.slackbot({
+        storage: firebaseStorage
+    });
 var os = require("os");
 var cron = require("cron").CronJob;
 
 var controller = Botkit.slackbot({
     debug: true,
-    storage: firebaseStorage
 });
 
 var makebot = controller.spawn({
