@@ -26,3 +26,8 @@ Help staff...
   Students must select the right emoji prior to 10:00 AM in order
   to be signed in. If the students picks the wrong emoji twice, 
   that students will not be able to sign in and must see Jade.
+
+## Uses
+1. Botkit
+2. node-cron
+3. Firebase
