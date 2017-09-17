@@ -33,11 +33,20 @@ var makebot = controller.spawn({
 // On start, save all users to database
 makebot.startRTM(function(err, makebot, payload) {
     if (err) {
-        throw new Error('Unable to connect to Slack channel.');
+        throw new Error(err);
     } else {
         makebot.api.users.list({}, function(err, response) {
-            console.log(response);
-        });
+            var members = response.members
+
+            for(var i in members) {
+                var user  = {
+                    id: members[i].id,
+                    email: members[i].profile.email
+                }
+                
+                controller.storage.users.save(user);
+            }   
+        })
     }
 });
 
