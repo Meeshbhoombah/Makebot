@@ -12,7 +12,7 @@ var SLACK_TOKEN = require('./tokens').SLACK_TOKEN;
 var Botkit = require('botkit');
 var os = require('os');
 var cron = require('node-cron').CronJob;
-var mongoStorage = require('botkit-storage-mongo')({mongoUri: });
+var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGO_URI});
 
 var controller = Botkit.slackbot({
     debug: true,
@@ -21,7 +21,7 @@ var controller = Botkit.slackbot({
 });
 
 var makebot = controller.spawn({
-    token: global.SLACK_TOKEN
+    token: SLACK_TOKEN
 }).StartRTM();
 
 // Save all Slack users to database
