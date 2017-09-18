@@ -29,6 +29,5 @@ College. Makebot can:
 
 ## Uses
 1. Botkit
-2. Node-cron
-3. Mongo DB
-4. Google Calendar API v3
+2. node-cron
+3. Firebase
