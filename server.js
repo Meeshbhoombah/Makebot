@@ -28,11 +28,12 @@ var makebot = controller.spawn({
     token: SLACK_TOKEN
 }).startRTM();
 
-controller.setUpWebServer(process.env.port, function(err, webserver) {
+controller.setupWebserver(5000, function(err, webserver) {
     if (err) {
         throw new Error(err);
     } else {
         controller.createWebhookEndpoints(controller.webserver);
+        console.log("Web server running");
     }
 });
 
@@ -65,7 +66,9 @@ var signInJob = new cron({
 });
 
 // '/immissing' Slash command
-
+controller.on('/immissing', function(makebot, message) {
+    console.log("Woah");
+});
 
 signInJob.start();
 
