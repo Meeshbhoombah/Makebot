@@ -10,7 +10,6 @@ var SLACK_TOKEN = require('./tokens').SLACK_TOKEN;
 
 // Modules
 var Botkit = require('botkit');
-var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGO_URI});
 
 var os = require('os');
 var cron = require('cron').CronJob;
@@ -22,13 +21,20 @@ var calendar = google.calendar('v3');
 var controller = Botkit.slackbot({
     debug: true,
     require_delivery: true,
-    storage: mongoStorage,
     scopes: ['users']
 });
 
 var makebot = controller.spawn({
     token: SLACK_TOKEN
 }).startRTM();
+
+controller.setUpWebServer(process.env.port, function(err, webserver) {
+    if (err) {
+        throw new Error(err);
+    } else {
+        controller.createWebhookEndpoints(controller.webserver);
+    }
+});
 
 // On start, save all users to database
 makebot.startRTM(function(err, makebot, payload) {
@@ -43,8 +49,6 @@ makebot.startRTM(function(err, makebot, payload) {
                     id: members[i].id,
                     email: members[i].profile.email
                 }
-                
-                controller.storage.users.save(user);
             }   
         })
     }
@@ -54,11 +58,14 @@ makebot.startRTM(function(err, makebot, payload) {
 var signInJob = new cron({
     cronTime: '00 00 09 * * 1-5',
     onTick: function() {
-           
+               
     },
     start: false,
     timeZone: 'America/Los_Angeles'
 });
+
+// '/immissing' Slash command
+
 
 signInJob.start();
 
