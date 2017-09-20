@@ -21,7 +21,7 @@ var makebot = controller.spawn({
     token: tokens.slack
 }).startRTM();
 
-// On start, save all users to database
+// On start, save all users to database using Botkit's storage system
 makebot.startRTM(function(err, makebot, payload) {
     if (err) {
         throw new Error(err);
