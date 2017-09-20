@@ -1,3 +1,10 @@
+<h1 alight="center">
+    <br>
+    MakeBot
+    <br>
+</h1>
+
+
 # Makebot
 A Slackbot for students and instructors at the Make School Product
 College. Makebot can: 
