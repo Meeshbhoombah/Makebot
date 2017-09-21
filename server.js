@@ -7,18 +7,21 @@ Makebot.js - a Slackbot for Make School's Product College slack
 
 var tokens = require('./tokens').tokens;
 var botkit = require('botkit');
+var redisConfig = {};
+var redisStorage = require('botkit-storage-redis')();
 var cron = require('cron').CronJob;
 
 var controller = botkit.slackbot({
-    clientId: tokens.slackClientID,
-    clientSecret: tokens.slackClientSecret,
+    storage: redisStorage,
     debug: true,
-    require_delivery: true,
-    scopes: ['users']
+    require_delivery: true
 });
 
 var makebot = controller.spawn({
-    token: tokens.slack
+    clientId: tokens.slack.slackClientID,
+    clientSecret: tokens.slack.slackClientSecret,
+    redirectUri: 'http://localhost:5000',
+    scopes: ['bot', 'users.profile:read', 'users:read', 'users:read.email']
 }).startRTM();
 
 // On start, save all users to database using Botkit's storage system
