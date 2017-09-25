@@ -14,8 +14,8 @@ var redisStorage = require('botkit-storage-redis')();
 var cron = require('cron').CronJob;
 
 var controller = botkit.slackbot({
-    clientId: tokens.SLACK_CLIENT_ID,
-    clientSecret: tokens.SLACK_CLIENT_SECRET,
+    clientId: t.SLACK_CLIENT_ID,
+    clientSecret: t.SLACK_CLIENT_SECRET,
     redirectUri: 'http://localhost:5000',
     storage: redisStorage,
     scopes: ['bot', 'users.profile:read', 'users:read', 'users:read.email'],
@@ -25,7 +25,7 @@ var controller = botkit.slackbot({
 
 var bot = controller.spawn({
     // token: tokens.SLACK_BOT_TOKEN
-    token: "xoxb-245078946277-JZXagnS9bdrpWWeZN0lxzD17" 
+    token: t.SLACK_BOT_TOKEN
 }).startRTM(function(err) {
     if (err) {
         throw new Error('Unable to connect to Slack');
