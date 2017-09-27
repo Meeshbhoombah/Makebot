@@ -1,7 +1,12 @@
-# General Mac Files
+# Project Specefic
+tokens.js
+node_modules/
+
+# Mac
 .DS_Store
+
+# Vim
 *.swp
 
-# Don't fuck w/ my keys
-tokens.js
+# Redis
 *.rdb
