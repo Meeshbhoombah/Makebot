@@ -7,13 +7,12 @@ Makebot.js - a Slackbot for Make School's Product College slack
 
 var tokens = require('./tokens');
 
+// Bot essentials
 var botkit = require('botkit');
 var redisConfig = {};
 var redisStorage = require('botkit-storage-redis')(redisConfig);
 
-var cron = require('cron').CronJob;
-
-// Set up bot with correct tokens, scope, and redisServer;
+// Instantiate Botkit Slack controller
 var controller = botkit.slackbot({
     clientId: tokens.SLACK_CLIENT_ID,
     clientSecret: tokens.SLACK_CLIENT_SECRET,
@@ -24,19 +23,8 @@ var controller = botkit.slackbot({
     require_delivery: true
 });
 
-var makebot = controller.spawn({
+// The birth of Makebot 🤖
+modeule.exports makebot = controller.spawn({
     token: tokens.SLACK_BOT_TOKEN
 });
-
-// Executes everyday M - F at 9:00 AM PST
-var onStartOfDay = new CronJob({
-    cronTime: '00 00 09 * * 1-5',
-    onTick: function() {
-
-    },
-    // start: false,
-    start: true,
-    timeZone: 'America/Los_Angeles'
-});
-
 
