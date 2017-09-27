@@ -27,3 +27,16 @@ var controller = botkit.slackbot({
 var makebot = controller.spawn({
     token: tokens.SLACK_BOT_TOKEN
 });
+
+// Executes everyday M - F at 9:00 AM PST
+var onStartOfDay = new CronJob({
+    cronTime: '00 00 09 * * 1-5',
+    onTick: function() {
+
+    },
+    // start: false,
+    start: true,
+    timeZone: 'America/Los_Angeles'
+});
+
+
