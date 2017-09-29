@@ -3,8 +3,8 @@
   signin.js
 
 - sends a sign in message every day of the week at startDay() and 
-  designates a correct emoji which is displayeed on a web app
-- reminds members who have not signed in by 10:00 AM to sign in at 10:00 AM
+  designates a correct emoji which is displayed on a web app
+- reminds members who have not signed in by 10:00 AM to sign in
 - at endDay() collects all members who not signed in and markes them as
   absent for that day
 - prints all members who were absent to the #attendance channel
@@ -21,12 +21,21 @@ var mongoose  = require('mongoose')
 mongoose.connect('mongodb:///localhost:5000/members')
 
 module.exports = function(controller) {
+    
+    var emojiObject = {
+        pass: "",
+        ran1: "",
+        ran2: "",
+        ran3: ""
+    }
    
     /*
     Parses through the members database and sends each student a 
     sign in message. */ 
     function signInOpen() {
+        for x in members {
 
+        }
     }
 
     /* 
