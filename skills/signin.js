@@ -1,31 +1,16 @@
 // signin.js
+// signin.js
+var debug = require('debug')('makebot:signin')
 
-var CronJob = require('cron').CronJob;
+module.exports = function(controller) {
+    /* Generate an object of four new emojis */
+    function generateEmojiArray() {
+        
+    }
 
-var startOfTheDay = new CronJob({
-  cronTime: '00 00 09  * * 1-5',
-  onTick: function() {
-    
-  },
-  start: false,
-  timeZone: 'America/Los_Angeles'
-});
+    /* Send greeting with four buttons, generated from
+        
 
-var signInReminder = new CronJob({
-  cronTime: '00 00 09  * * 1-5',
-  onTick: function() {
-    
-  },
-  start: false,
-  timeZone: 'America/Los_Angeles'
-}
 
-var endOfTheDay = new CronJob({
-    cronTime: '00 00 18  * * 1-5',
-    onTick: function() {
-      
-    },
-    start: false,
-    timeZone: 'America/Los_Angeles'
 }
 
