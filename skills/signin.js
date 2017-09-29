@@ -17,18 +17,14 @@
 var debug     = require('debug')('makebot:signin')
 var CronJob   = require('cron').CronJob
 
-var mongoose  = require('mongoose')
-mongoose.connect('mongodb:///localhost:5000/members')
-
 module.exports = function(controller) {
-    
     var emojiObject = {
         pass: "",
         ran1: "",
         ran2: "",
         ran3: ""
     }
-   
+ 
     /*
     Parses through the members database and sends each student a 
     sign in message. */ 
