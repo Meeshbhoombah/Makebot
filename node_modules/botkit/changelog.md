@@ -4,6 +4,42 @@
 
 [Want to contribute? Read our guide!](https://github.com/howdyai/botkit/blob/master/CONTRIBUTING.md)
 
+## 0.6.3
+
+New: Support for [Slack Dialogs](https://api.slack.com/dialogs), including:
+
+* `bot.createDialog()` function [Docs](docs/readme-slack.md#dialogs)
+* `bot.replyWithDialog()` function [Docs](docs/readme-slack.md#botreplywithdialog)
+* `bot.api.dialog.open()` function
+* `dialog_submission` event [Docs](docs/readme-slack.md#receive-dialog-submissions)
+* `bot.dialogOk()` function [Docs](docs/readme-slack.md#botdialogok)
+* `bot.dialogError()` function [Docs](docs/readme-slack.md#botdialogerror)
+
+Fix: Cisco Spark bots will once again receive `direct_message` and `direct_mention` events. (Fix for [#1059](https://github.com/howdyai/botkit/issues/1059))
+
+## 0.6.2
+
+Fix bug in Facebook connector: call `startTicking()` as part of object instantiation. This was missing in 0.6 and 0.6.1
+
+Move call to `startTicking()` in TwilioIPM connector to make it consistent with other connectors.
+
+Fix: Catch 202 response code that does not have a JSON response body. This status sometimes comes back from the MS Teams API when a message has been queued for delivery.
+
+## 0.6.1
+
+Fix bugs in Botframework and ConsoleBot connectors that caused messages not to send. Resolves #1033.
+
+Fix typo in Twilio connector that caused attached media to fail. Thanks @jpowers! [PR #1023](https://github.com/howdyai/botkit/pull/1023)
+
+Fix missing `bodyParser` module in Facebook connector. Resolves #1041.
+
+New: Add support for the new `conversations` APIs for Slack. [Read about this new API here](https://api.slack.com/docs/conversations-api).
+
+New: Add `usergroups` APIs for Slack. Thanks to @digitalspecialists for this! [PR #1001](https://github.com/howdyai/botkit/pull/1001)
+
+Change: Facebook `message_echo` webhooks will now emit `message_echo` events instead of `message_received` events to distinguish them from messages sent by users.
+
+
 ## 0.6.0
 
 This version features some BIG CHANGES!
