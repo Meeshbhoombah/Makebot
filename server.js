@@ -1,18 +1,21 @@
-// makebot.js
+/*
 
-var moongose   = require('mongoose')
+  makebot.js
+    
+*/
 
-// Botkit
-var tokens     = require('./tokens')
-var botkit     = require('botkit')
+var express     = require('express')
 
-// Components
-var about      = require('skills/about')
+var tokens      = require('./tokens')
+var botkit      = require('botkit')
 
-// Skills
-var signin     = require('skills/signin')
+var app         = express()
+var bodyParser  = require('body-parser')
 
-// Instantiate Botkit Slack controller 
+// Skills ================================================================================
+var signin      = require('skills/signin')
+
+// Makebot 
 var controller = botkit.slackbot({
     clientId: tokens.SLACK_CLIENT_ID,
     clientSecret: tokens.SLACK_CLIENT_SECRET,
@@ -21,8 +24,9 @@ var controller = botkit.slackbot({
     require_delivery: true
 })
 
-// Botkit webserver 
-controller.setupWebserver(process.env.port, function(err, webserver) {
-    controller.createWebhookEndpoints(controller.webserver)
+var makebot = controller.spawn({
+    token: tokens.SLACK_BOT_TOKEN
 })
+
+// Webserver  ============================================================================
 
