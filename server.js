@@ -31,12 +31,6 @@ controller.setUpWebserver(port, function(err, express_webserver) {
     controller.createWebhookEndpoints(express_webserver)  
 })
 
-controller.on('slash_command', function(bot, message) {
-    switch (message.command) {
-        case '/about':
-            bot.replyPrivate(message, '')
-        default:
-            
-    }
-})
+// Components ============================================================================
+var slashCommandHandler = require('components/slashcommands')
 
