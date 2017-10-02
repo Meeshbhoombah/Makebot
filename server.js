@@ -28,12 +28,15 @@ var makebot = controller.spawn({
 })
 
 // Components ============================================================================
-require('./components/setup')(controller, makebot)
+var config = require('./components/config')
+config.dbSetUp(controller, makebot)
+
 // var onboard  = require('./components/onboard')
 // var about    = require('./components/about')
 
 // Skills ================================================================================
-var signIn = require('./skills/signin')(makebot)
+var signIn = require('./skills/signin')
+signIn.open(controller, makebot)
 
 // Handle I/O ============================================================================
 // cron jobs
@@ -41,7 +44,7 @@ var startOfDay = new cronJob({
   cronTime: '00 00 09 * * 1-5',
   onTick: function() {
     // runs everyday Monday to Friday at 09:00:00 AM
-    signIn.openSignIn()
+    signIn.open()
   },
   start: false,
   timeZone: 'America/Los_Angeles'
@@ -55,8 +58,6 @@ var endOfDay = new cronJob({
   start: false,
   timeZone: 'America/Los_Angeles'
 })
-
-signIn.openSignIn()
 
 startOfDay.start()
 endOfDay.start()

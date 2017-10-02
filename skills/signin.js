@@ -20,41 +20,47 @@ var Store          = require("jfs")
 var db             = new Store("emojis")
 
 var generateEmoji  = require('node-emoji')
+var emojiArr = []
 
-var SignIn = function(makebot) {
-    /*
-    Parses through the members database and sends each student a 
-    sign in message. */ 
-    function openSignIn() {
-        for (var i = 0; i < 4; i++) {
-            var emoji = generateEmoji.random().emoji
+/*
+Parses through the members database and sends each student a 
+sign in message. */ 
+module.exports.open = function (controller, makebot) {
+    generateEmojis()
+}
 
-            console.log(emoji)
-        } 
-    }
+function generateEmojis() {
+    for (i = 0; i < 4; i++) {
+        var ranEmoji = generateEmoji.random().emoji
 
-    /* 
-    Handles the student's response to the sign in message. If the
-    right button is selected, the student is signed in, otherwise
-    ask the user to make another attempt. */
-    function sendSignInMessage(memberId) {
-    }
-
-    /*
-    Takes passed emoji and checks if it matches the database's
-    selected emoji. */
-    function checkEmojiSelection() {
-
-    }
-
-    /*
-    Parses through the members database and collects all students
-    who have not signed in today. Creates a table with the data
-    and prints it to the #attendance channel. */
-    function signInClosed() {
-
+        if (ranEmoji == emojiArr[0]) {
+            i-- 
+            break
+        } else {
+            emojiArr[i] = ranEmoji
+        }
     }
 }
 
-module.exports.SignIn = SignIn
+/* 
+Handles the student's response to the sign in message. If the
+right button is selected, the student is signed in, otherwise
+ask the user to make another attempt. */
+function sendSignInMessage(memberId) {
+}
+
+/*
+Takes passed emoji and checks if it matches the database's
+selected emoji. */
+function checkEmojiSelection() {
+
+}
+
+/*
+Parses through the members database and collects all students
+who have not signed in today. Creates a table with the data
+and prints it to the #attendance channel. */
+function signInClosed() {
+
+}
 
