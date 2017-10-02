@@ -26,10 +26,7 @@ var emojiArr = []
 Parses through the members database and sends each student a 
 sign in message. */ 
 module.exports.open = function (controller, makebot) {
-    generateEmojis()
-}
-
-function generateEmojis() {
+    // create daily emoji array
     for (i = 0; i < 4; i++) {
         var ranEmoji = generateEmoji.random().emoji
 
@@ -40,6 +37,20 @@ function generateEmojis() {
             emojiArr[i] = ranEmoji
         }
     }
+
+    controller.storage.users.all(function(err, all_user_data) {
+        try {
+            console.dir(all_user_data)
+        
+            for (var user in all_user_data) {
+                if (all_user_data.hasOwnProperty(user)) {
+                    console.log(user.id)
+                }
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    })
 }
 
 /* 
