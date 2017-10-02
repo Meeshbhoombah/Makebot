@@ -1,6 +1,4 @@
-
 // makebot.js
-  
 var tokens      = require('./tokens')
 var botkit      = require('botkit')
 
