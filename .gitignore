@@ -1,6 +1,7 @@
 # Project Specefic
 tokens.js
 node_modules/
+database.json
 
 # Mac
 .DS_Store

@@ -1,6 +1,5 @@
-/*
-    makebot.js
-*/
+
+// makebot.js
   
 var tokens      = require('./tokens')
 var botkit      = require('botkit')
@@ -21,25 +20,28 @@ var controller = botkit.slackbot({
     require_delivery: true
 })
 
-// The Birth of Makebot 🤖
+controller.startTicking()
+
+// the birth of Makebot 🤖
 var makebot = controller.spawn({
     token: tokens.SLACK_BOT_TOKEN
 })
 
-// Skills ================================================================================
-var signIn = require('./skills/signin')
-
 // Components ============================================================================
+require('./components/setup')(controller, makebot)
 // var onboard  = require('./components/onboard')
 // var about    = require('./components/about')
-// var setup    = require('./components/setup')
+
+// Skills ================================================================================
+var signIn = require('./skills/signin')(makebot)
 
 // Handle I/O ============================================================================
+// cron jobs
 var startOfDay = new cronJob({
-  cronTime: '00 43 18 * * 1-5',
+  cronTime: '00 00 09 * * 1-5',
   onTick: function() {
     // runs everyday Monday to Friday at 09:00:00 AM
-    console.log('suprise motherfuckers')
+    signIn.openSignIn()
   },
   start: false,
   timeZone: 'America/Los_Angeles'
@@ -54,9 +56,8 @@ var endOfDay = new cronJob({
   timeZone: 'America/Los_Angeles'
 })
 
-// to see if Cron jobs are running
-console.log('startOfDay status', startOfDay.running)
+signIn.openSignIn()
+
 startOfDay.start()
-console.log('startOfDay status', startOfDay.running)
 endOfDay.start()
 

@@ -14,20 +14,23 @@
 
 */
 
-var debug  = require('debug')('makebot:signin')
+var debug          = require('debug')('makebot:signin')
 
-var SignIn = function() {
-    var emojiObject = {
-        pass: "",
-        ran1: "",
-        ran2: "",
-        ran3: ""
-    }
+var Store          = require("jfs")
+var db             = new Store("emojis")
 
+var generateEmoji  = require('node-emoji')
+
+var SignIn = function(makebot) {
     /*
     Parses through the members database and sends each student a 
     sign in message. */ 
-    function signInOpen() {
+    function openSignIn() {
+        for (var i = 0; i < 4; i++) {
+            var emoji = generateEmoji.random().emoji
+
+            console.log(emoji)
+        } 
     }
 
     /* 
@@ -35,15 +38,6 @@ var SignIn = function() {
     right button is selected, the student is signed in, otherwise
     ask the user to make another attempt. */
     function sendSignInMessage(memberId) {
-        bot.startPrivateConversation(memberId, function(err, convo){
-            if (err) {
-                console.log(err)
-            } else {
-                convo.ask({
-
-                })
-            }
-        }) 
     }
 
     /*
@@ -60,7 +54,7 @@ var SignIn = function() {
     function signInClosed() {
 
     }
-}()
+}
 
-module.exports = SignIn
+module.exports.SignIn = SignIn
 
