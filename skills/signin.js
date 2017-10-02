@@ -43,9 +43,7 @@ module.exports.open = function (controller, makebot) {
             console.dir(all_user_data)
         
             for (var user in all_user_data) {
-                if (all_user_data.hasOwnProperty(user)) {
-                    console.log(user.id)
-                }
+                console.log(all_user_data[user].id)
             }
         } catch (e) {
             console.log(e)
