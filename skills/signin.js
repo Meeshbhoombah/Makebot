@@ -20,7 +20,9 @@ var Store          = require("jfs")
 var db             = new Store("emojis")
 
 var generateEmoji  = require('node-emoji')
-var emojiArr = []
+
+// array of emojis for today
+var emojiArr  = []
 
 /*
 Parses through the members database and sends each student a 
@@ -40,10 +42,10 @@ module.exports.open = function (controller, makebot) {
 
     controller.storage.users.all(function(err, all_user_data) {
         try {
-            console.dir(all_user_data)
-        
             for (var user in all_user_data) {
                 console.log(all_user_data[user].id)
+
+                sendSignInMessage(all_user_data[user].id, makebot)
             }
         } catch (e) {
             console.log(e)
@@ -55,7 +57,48 @@ module.exports.open = function (controller, makebot) {
 Handles the student's response to the sign in message. If the
 right button is selected, the student is signed in, otherwise
 ask the user to make another attempt. */
-function sendSignInMessage(memberId) {
+function sendSignInMessage(memberId, makebot) {
+    makebot.createPrivateConversation({user: memberId}, function(err, convo) {
+        try {
+            convo.setVar()
+    
+            convo.say({
+                text: 'Good morning! Remember to commit to GitHub today.',
+                 attachments: [
+                    {
+                        title: 'Please pick a button to sing in:',
+                        callback_id: '',
+                        attachment_type: 'default',
+                        actions: [
+                            {
+                                "name":"yes",
+                                "text": "Yes!",
+                                "value": "yes",
+                                "type": "button",
+                            },
+                            {
+                               "text": "No!",
+                                "name": "no",
+                                "value": "delete",
+                                "style": "danger",
+                                "type": "button",
+                                "confirm": {
+                                  "title": "Are you sure?",
+                                  "text": "This will do something!",
+                                  "ok_text": "Yes",
+                                  "dismiss_text": "No"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            })
+            
+            convo.activate()
+        } catch (e) {
+            console.log(e)
+        }   
+    })
 }
 
 /*

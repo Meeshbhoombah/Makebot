@@ -28,15 +28,13 @@ var makebot = controller.spawn({
 })
 
 // Components ============================================================================
-var config = require('./components/config')
-config.dbSetUp(controller, makebot)
+require('./components/config')(controller, makebot)
 
 // var onboard  = require('./components/onboard')
 // var about    = require('./components/about')
 
 // Skills ================================================================================
 var signIn = require('./skills/signin')
-signIn.open(controller, makebot)
 
 // Handle I/O ============================================================================
 // cron jobs
@@ -61,4 +59,8 @@ var endOfDay = new cronJob({
 
 startOfDay.start()
 endOfDay.start()
+
+var listener = app.listen(8888, function(){
+    console.log('Listening on port ' + listener.address().port); //Listening on port 8888
+});
 
