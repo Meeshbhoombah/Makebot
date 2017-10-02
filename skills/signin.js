@@ -14,8 +14,7 @@
 
 */
 
-var debug     = require('debug')('makebot:signin')
-
+var debug  = require('debug')('makebot:signin')
 
 var SignIn = function() {
     var emojiObject = {
