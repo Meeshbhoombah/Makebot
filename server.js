@@ -41,12 +41,16 @@ controller.setupWebserver('5000', function(err, webserver) {
     controller.createWebhookEndpoints(controller.webserver)
 })
 
+controller.on('interactive_message_callback', function(makebot, message) {
+    console.log(message.actions)
+    console.log(message.calllback_id)
+})
+
 // cron jobs
 var startOfDay = new cronJob({
   cronTime: '00 00 09 * * 1-5',
   onTick: function() {
     // runs everyday Monday to Friday at 09:00:00 AM
-    
   },
   start: false,
   timeZone: 'America/Los_Angeles'
@@ -55,7 +59,7 @@ var startOfDay = new cronJob({
 var endOfDay = new cronJob({
   cronTime: '00 00 18 * * 1-5',
   onTick: function() {
-    // runs everyday Monday to Friday at 06:00:00 AM
+    // runs everyday Monday to Friday at 06:00:00 PM
   },
   start: false,
   timeZone: 'America/Los_Angeles'
