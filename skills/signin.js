@@ -1,21 +1,21 @@
 /*
 
-  signin.js
+    signin.js
 
-- sends a sign in message every day of the week at startDay() and 
-  designates a correct emoji which is displayed on a web app
-- reminds members who have not signed in by 10:00 AM to sign in
-- at endDay() collects all members who not signed in and markes them as
-  absent for that day
-- prints all members who were absent to the #attendance channel
+    - sends a sign in message every day of the week at startDay() and 
+      designates a correct emoji which is displayed on a web app
+    - reminds members who have not signed in by 10:00 AM to sign in
+    - at endDay() collects all members who not signed in and markes them as
+      absent for that day
+    - prints all members who were absent to the #attendance channel
 
-* Doing /attendance as an instructor tells the instructor all the students
-  who have not signed thus far today
+    * Doing /attendance as an instructor tells the instructor all the students
+      who have not signed thus far today
 
 */
 
 var debug     = require('debug')('makebot:signin')
-var CronJob   = require('cron').CronJob
+
 
 var SignIn = function() {
     var emojiObject = {
@@ -36,11 +36,13 @@ var SignIn = function() {
     right button is selected, the student is signed in, otherwise
     ask the user to make another attempt. */
     function sendSignInMessage(memberId) {
-        bot.startPrivateConversation(, function(err, convo){
+        bot.startPrivateConversation(memberId, function(err, convo){
             if (err) {
                 console.log(err)
             } else {
+                convo.ask({
 
+                })
             }
         }) 
     }
@@ -60,8 +62,6 @@ var SignIn = function() {
 
     }
 }()
-
-
 
 module.exports = SignIn
 
