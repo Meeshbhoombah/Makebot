@@ -16,18 +16,16 @@
 
 var debug          = require('debug')('makebot:signin')
 
-var Store          = require("jfs")
-var db             = new Store("emojis")
-
 var generateEmoji  = require('node-emoji')
-
-// array of emojis for today
-var emojiArr  = []
+var emojiArr       = []
 
 /*
-Parses through the members database and sends each student a 
-sign in message. */ 
+ * Parses through the members database and sends each student a 
+ * sign in message. 
+ */ 
 module.exports.open = function (controller, makebot) {
+    console.log('test')
+
     // create daily emoji array
     for (i = 0; i < 4; i++) {
         var ranEmoji = generateEmoji.random().emoji
@@ -42,9 +40,8 @@ module.exports.open = function (controller, makebot) {
 
     controller.storage.users.all(function(err, all_user_data) {
         try {
+            // send all users sign in message
             for (var user in all_user_data) {
-                console.log(all_user_data[user].id)
-
                 sendSignInMessage(all_user_data[user].id, makebot)
             }
         } catch (e) {
@@ -54,40 +51,54 @@ module.exports.open = function (controller, makebot) {
 }
 
 /* 
-Handles the student's response to the sign in message. If the
-right button is selected, the student is signed in, otherwise
-ask the user to make another attempt. */
+ * Handles the student's response to the sign in message. If the
+ * right button is selected, the student is signed in, otherwise
+ * ask the user to make another attempt. 
+ */
 function sendSignInMessage(memberId, makebot) {
     makebot.createPrivateConversation({user: memberId}, function(err, convo) {
         try {
-            convo.setVar()
-    
+            // randomize the order of the emojis for each user
+            for (var i = 0; i < 4; i++) {
+                // get random emoji from emojiArr
+                var randomEmoji = emojiArr[Math.floor(Math.random() * emojiArr.length)]
+                
+                // remove emoji after use       
+                emojiArr = emojiArr.filter(item => item !== randomEmoji)
+                convo.setVar('ran' + i, randomEmoji)
+            }
+
             convo.say({
                 text: 'Good morning! Remember to commit to GitHub today.',
                  attachments: [
                     {
-                        title: 'Please pick a button to sing in:',
-                        callback_id: '',
+                        title: 'You shall not pass! 🚫:',
+                        callback_id: 'signin',
                         attachment_type: 'default',
                         actions: [
                             {
-                                "name":"yes",
-                                "text": "Yes!",
-                                "value": "yes",
-                                "type": "button",
+                                "name":"A",
+                                "text":"{{vars.ran0}}",
+                                "value":"{{vars.ran0}}",
+                                "type":"button",
                             },
                             {
-                               "text": "No!",
-                                "name": "no",
-                                "value": "delete",
-                                "style": "danger",
-                                "type": "button",
-                                "confirm": {
-                                  "title": "Are you sure?",
-                                  "text": "This will do something!",
-                                  "ok_text": "Yes",
-                                  "dismiss_text": "No"
-                                }
+                                "name":"B",
+                                "text":"{{vars.ran1}}",
+                                "value":"{{vars.ran1}}",
+                                "type":"button",
+                            },
+                            {
+                                "name":"C",
+                                "text":"{{vars.ran2}}",
+                                "value":"{{vars.ran2}}",
+                                "type":"button",
+                            },
+                            {
+                                "name":"D",
+                                "text":"{{vars.ran3}}",
+                                "value":"{{vars.ran3}}",
+                                "type":"button",
                             }
                         ]
                     }

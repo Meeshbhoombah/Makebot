@@ -29,20 +29,24 @@ var makebot = controller.spawn({
 
 // Components ============================================================================
 require('./components/config')(controller, makebot)
-
 // var onboard  = require('./components/onboard')
 // var about    = require('./components/about')
 
 // Skills ================================================================================
 var signIn = require('./skills/signin')
+signIn.open(controller, makebot)
 
 // Handle I/O ============================================================================
+controller.setupWebserver('5000', function(err, webserver) {
+    controller.createWebhookEndpoints(controller.webserver)
+})
+
 // cron jobs
 var startOfDay = new cronJob({
   cronTime: '00 00 09 * * 1-5',
   onTick: function() {
     // runs everyday Monday to Friday at 09:00:00 AM
-    signIn.open()
+    
   },
   start: false,
   timeZone: 'America/Los_Angeles'
@@ -60,7 +64,7 @@ var endOfDay = new cronJob({
 startOfDay.start()
 endOfDay.start()
 
-var listener = app.listen(8888, function(){
-    console.log('Listening on port ' + listener.address().port); //Listening on port 8888
-});
+var listener = app.listen(8888, function() {
+    console.log('Listening on port ' + listener.address().port) // Listening on port 8888
+})
 
