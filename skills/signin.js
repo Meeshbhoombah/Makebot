@@ -17,21 +17,18 @@
 var debug     = require('debug')('makebot:signin')
 var CronJob   = require('cron').CronJob
 
-module.exports = function(controller) {
+var SignIn = function() {
     var emojiObject = {
         pass: "",
         ran1: "",
         ran2: "",
         ran3: ""
     }
- 
+
     /*
     Parses through the members database and sends each student a 
     sign in message. */ 
     function signInOpen() {
-        for x in members {
-
-        }
     }
 
     /* 
@@ -62,5 +59,9 @@ module.exports = function(controller) {
     function signInClosed() {
 
     }
-}
+}()
+
+
+
+module.exports = SignIn
 

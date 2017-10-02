@@ -10,7 +10,7 @@ var app         = express()
 var bodyParser  = require('body-parser')
 
 // Skills ================================================================================
-var signin      = require('skills/signin')
+var SignIn      = require('./skills/signin')
 
 // Makebot ===============================================================================
 var controller = botkit.slackbot({
@@ -29,14 +29,5 @@ var makebot = controller.spawn({
 // Makebot Express Server ================================================================
 controller.setUpWebserver(port, function(err, express_webserver) {
     controller.createWebhookEndpoints(express_webserver)  
-})
-
-controller.on('slash_command', function(bot, message) {
-    switch (message.command) {
-        case '/about':
-            bot.replyPrivate(message, 'About command')
-        default:
-            bot.replyPrivate(message, 'Uh oh! This does not seem like a skill I know. Why not teach me?')
-    }
 })
 
