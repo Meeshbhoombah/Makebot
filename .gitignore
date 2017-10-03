@@ -1,14 +1,13 @@
-# Project Specefic
+# proj
 tokens.js
-node_modules/
-database.json
+node_modules
+.db
 
-# Mac
+# mac
 .DS_Store
+components/routes/_*
 
-# Vim
+# vim
 *.swp
 *.swo
 
-# Redis
-*.rdb
