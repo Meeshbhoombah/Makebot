@@ -1,21 +1,21 @@
 /*
 
-    setup.js
+    setup.js || configuring db
 
-    - check if database has been created, if not, create a JSON
-      database with all the members in the team
+    - on server boot create a database of all students and team info
+    - gather team data for the Makebot development Slack and the 
+      Makebot Product College Slack
     
 */
 
 var debug = require('debug')('makebot:signin')
 
-// if database is empty propogate with members in the Slack channel
 module.exports = function (controller, makebot) {
     controller.storage.users.all(function(err, all_user_data) {
         try {
+            // propogate database with users if empty
             if (isEmptyObject(all_user_data)) {
                 makebot.api.users.list({}, function(err, response){
-                    // turns user data into an obj
                     try {
                         // renamed because I hate using response
                         var userData = response
@@ -26,7 +26,8 @@ module.exports = function (controller, makebot) {
                                 var userId = userData.members[member].id
                                 var userName = userData.members[member].name
                                 var userEmail = userData.members[member].profile.email
-                               
+                                
+                                // creates a database of all humans in Slack team
                                 if (userEmail != null) {
                                     controller.storage.users.save({
                                         id: userId,

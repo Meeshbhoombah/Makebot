@@ -32,7 +32,6 @@ require('./components/config')(controller, makebot)
 
 // Skills ================================================================================
 var signIn = require('./skills/signin')
-signIn.open(controller, makebot)
 
 // Handle I/O ============================================================================
 controller.setupWebserver('5000', function(err, webserver) {
@@ -48,7 +47,8 @@ controller.on('interactive_message_callback', function(makebot, message) {
 var startOfDay = new cronJob({
   cronTime: '00 00 09 * * 1-5',
   onTick: function() {
-    // runs everyday Monday to Friday at 09:00:00 AM
+    // executes everyday Monday to Friday at 09:00:00 AM
+    signIn.open(controller, makebot)
   },
   start: false,
   timeZone: 'America/Los_Angeles'
@@ -57,7 +57,7 @@ var startOfDay = new cronJob({
 var endOfDay = new cronJob({
   cronTime: '00 00 18 * * 1-5',
   onTick: function() {
-    // runs everyday Monday to Friday at 06:00:00 PM
+    // executes everyday Monday to Friday at 06:00:00 PM
   },
   start: false,
   timeZone: 'America/Los_Angeles'
