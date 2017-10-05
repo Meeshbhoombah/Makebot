@@ -9,6 +9,7 @@ module.exports = function(controller) {
         if (!payload.identity.team_id) {
             debug('Error: received an oauth response without a team id', payload);
         }
+
         controller.storage.teams.get(payload.identity.team_id, function(err, team) {
             if (err) {
                 debug('Error: could not load team from storage system:', payload.identity.team_id, err);
@@ -43,8 +44,6 @@ module.exports = function(controller) {
                     // add in info that is expected by Botkit
                     testbot.identity = bot_auth;
                     testbot.team_info = team;
-
-                    // Replace this with your own database!
 
                     controller.storage.teams.save(team, function(err, id) {
                         if (err) {

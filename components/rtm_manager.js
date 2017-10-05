@@ -45,7 +45,6 @@ module.exports = function(controller) {
             delete managed_bots[bot.config.token];
         },
         reconnect: function() {
-
             debug('Reconnecting all existing bots...');
             controller.storage.teams.all(function(err, list) {
 

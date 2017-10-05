@@ -1,18 +1,18 @@
 /*
-
-    signin.js
-
-    - sends a sign in message every day of the week at startDay() and 
-      designates a correct emoji which is displayed on a web app
-    - reminds members who have not signed in by 10:00 AM to sign in
-    - at endDay() collects all members who not signed in and markes them as
-      absent for that day
-    - prints all members who were absent to the #attendance channel
-
-    * Doing /attendance as an instructor tells the instructor all the students
-      who have not signed thus far today
-
-*/
+ *
+ *  signin.js
+ *
+ *  - sends a sign in message every day of the week at startDay() and 
+ *    designates a correct emoji which is displayed on a web app
+ *  - reminds members who have not signed in by 10:00 AM to sign in
+ *  - at endDay() collects all members who not signed in and markes them as
+ *    absent for that day
+ *  - prints all members who were absent to the #attendance channel
+ *
+ *  * Doing /attendance as an instructor tells the instructor all the students
+ *    who have not signed thus far today
+ *
+ */
 
 var debug          = require('debug')('makebot:signin')
 
@@ -23,8 +23,8 @@ var emojiArr       = []
  * Parses through the members database and sends each student a 
  * sign in message. 
  */ 
-module.exports.open = function (controller, makebot) {
-    console.log('test')
+module.exports = function (controller, makebot) {
+    console.log('Sign in function started...')
 
     // create daily emoji array
     for (i = 0; i < 4; i++) {
@@ -38,6 +38,14 @@ module.exports.open = function (controller, makebot) {
         }
     }
 
+    controller.storage.teams.all(function(err, all_team_data) {
+        if (err) {
+            debug('Error: could not retrive team data')
+        } else {
+            console.log(all_team_data)
+        }
+    })    
+    
     controller.storage.users.all(function(err, all_user_data) {
         try {
             // send all users sign in message
@@ -51,7 +59,7 @@ module.exports.open = function (controller, makebot) {
 }
 
 /* 
- * Handles the student's response to the sign in message. If the
+ * Handles the student's response to the Sign in message. If the
  * right button is selected, the student is signed in, otherwise
  * ask the user to make another attempt. 
  */
@@ -72,7 +80,7 @@ function sendSignInMessage(memberId, makebot) {
                 text: 'Good morning! Remember to commit to GitHub today.',
                  attachments: [
                     {
-                        title: 'You shall not pass! 🚫:',
+                        title: 'Enter the emoji:',
                         callback_id: 'signin',
                         attachment_type: 'default',
                         actions: [
