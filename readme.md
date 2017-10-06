@@ -1,3 +1,16 @@
+# Makebot
+A bot for Make School's Product College Slack, built by students, for
+students.
+
+## Table of Contents
+
+## Contributing
+Chatbots, especially Slackbots, can handle pretty much anything you would
+want a person to do. That means, yes, in theory you could teach Makebot 
+how to order Lyfts for you when you're having a lazy day. But remember,
+**just cause you can, doesn't mean you should**.
+
+## Prerequisites
 <h1 align="center">
     <br>
     MakeBot
