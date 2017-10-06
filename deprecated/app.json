@@ -1,0 +1,22 @@
+{
+  "name": "Makebot",
+  "description": "A Slack bot for the Product College Slack",
+  "repository": "https://github.com/Meeshbhoombah/makebot",
+  "keywords": ["node", "bots", "slack"],
+  "website": "https://makeschool.com",
+  "success_url":"/",
+  "addons":[
+    {
+      "plan": "mongolab",
+      "as": "MONGO"
+    }
+  ],
+  "env": {
+      "clientId": {
+          "description": "Client ID provided by Slack"
+      },
+      "clientSecret": {
+          "description": "Client Secret provided by Slack"
+      }
+  }
+}

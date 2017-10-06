@@ -1,0 +1,39 @@
+{
+  "name": "Makebot",
+  "version": "1.0.0",
+  "description": "A bot for the Product College Slack",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "botkit": "^0.6",
+    "botkit-storage-mongo": "^1.0.6",
+    "dashbot": "0.7.4",
+    "debug": "^2.3.3",
+    "express": "^4.14.0",
+    "junk": "^2.1.0",
+    "node-emoji": "^1.8.1",
+    "node-env-file": "^0.1.8",
+    "querystring": "^0.2.0",
+    "request": "^2.79.0",
+    "wordfilter": "^0.2.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Meeshbhoombah/makebot"
+  },
+  "bugs": {
+    "url": "https://github.com/Meeshbhoombah/makebot/issues"
+  },
+  "homepage": "https://github.com/Meeshbhoombah/makebot",
+  "keywords": [
+    "bots",
+    "chatbots",
+    "slack"
+  ],
+  "author": "rohan.mishra@students.makeschool.com",
+  "license": "MIT"
+}
