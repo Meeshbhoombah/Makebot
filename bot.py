@@ -3,10 +3,9 @@
 
 import os
 import time
-import json
 
 from flask import Flask
-from flask_pymongo import PyMongo
+from mongoengine import *
 
 from slackclient import SlackClient
 
@@ -16,16 +15,27 @@ slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 
 app = Flask(__name__)
 
+'''
+DATABASE CONFIG ===================================================
+'''
 # user database
-app.config['MONGO_DBNAME'] = 'usersdb'
-users = PyMongo(app)
+connect('userdb')
 
-# API =============================================================
-
-# create database of members
-team_data = json.load(slack_client.api_call('users.list'))
+# get user data from Slack
+team_data = slack_client.api_call('users.list')
 members = team_data['members']
 
+# loop thru all members and save them to the database
 for member in members:
-    print(member['id'])
+    # don't save slackbot or other bots
+    if member['is_bot'] == False and member['id'] != 'USLACKBOT':
+
+        print(member['id'])
+        member_profile = member['profile']
+        print(member_profile['real_name'])
+        print(member_profile['email'])
+      
+'''
+API ===============================================================
+'''
 
