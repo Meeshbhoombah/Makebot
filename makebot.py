@@ -34,36 +34,6 @@ for member in members:
         new_member = User(slack_id = member_id, name = member_name, email = member_email)
         # TODO - uncomment:  new_member.save()
 
-'''
-TESTING
-'''
-import time
-import random
 
-# from mongoengine import *
-# from slackclient import SlackClient
-import schedule
-import emoji
 
-general_emoji_list = [':smile:', ':shit:',':alien:', ':heart:', ':robot:', ':ocean:', ':octocat:',':ghost:']
-this_day_emoji_list = []
-
-def generate_emojis():
-    for i in range(4):
-        random_emoji = random.choice(general_emoji_list)
-
-        if random_emoji not in this_day_emoji_list:
-            this_day_emoji_list.append(random_emoji)
-        else:
-            i--
-            pass
-
-def sign_in_open():
-    generate_emojis()
-
-    for user in User.objects:
-        send_sign_in_message(user.slack_id)
-    
-
-sign_in_open()
 
