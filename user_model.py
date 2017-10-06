@@ -1,9 +1,16 @@
 
-# user_model.py
+# usermodel.py
 
 import os
-import time
 
-# user database
+from mongoengine import *
 connect('userdb')
 
+class User(Document):
+    slack_id = StringField(required = True) 
+    name = StringField(required = True)
+    email = EmailField(required = True)
+
+class Staff(User):
+    role = StringField(required = True, default = True    
+    
