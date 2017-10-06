@@ -1,13 +1,14 @@
 # proj
-tokens.js
-node_modules
 .db
+/venv
 
 # mac
 .DS_Store
-components/routes/_*
 
 # vim
 *.swp
 *.swo
+
+# python
+*.pyc
 
