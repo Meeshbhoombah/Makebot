@@ -1,1 +1,0 @@
-from .makebot import app
