@@ -34,6 +34,3 @@ for member in members:
         new_member = User(slack_id = member_id, name = member_name, email = member_email)
         # TODO - uncomment:  new_member.save()
 
-
-
-
