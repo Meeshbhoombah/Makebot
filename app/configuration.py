@@ -10,15 +10,9 @@ class Config(object):
     """
     DEBUG = False
     TESTING = False
-    DATABASE_URI = 'sqlite:///application.db'
-    BOOTSTRAP_FONTAWESOME = True
 
 
-class ProductionConfig(Config):
-    DATABASE_URI = 'mysql://user@localhost/foo'
-    SLACK_TOKEN  = os.environ['SLACK_API_TOKEN']
-
-
+#class ProductionConfig(Config):
 class DevelopmentConfig(Config):
     DEBUG = True
            

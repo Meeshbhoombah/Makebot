@@ -1,30 +1,25 @@
 # -*- encoding: utf-8 -*-
 """
-Python Aplication Template
-Licence: GPLv3
+Makebot Configruation
 """
 
+import os
+
 from flask import Flask
-from flask.ext.bootstrap import Bootstrap
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.pymongo import PyMongo
-from flask.ext.login import LoginManager
 from slackclient import SlackClient
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
-makebot = SlackClient(SLACK_TOKEN) 
 
 #Configuration of application, see configuration.py, choose one and uncomment.
 #app.config.from_object('configuration.ProductionConfig')
 app.config.from_object('app.configuration.DevelopmentConfig')
 #app.config.from_object('configuration.TestingConfig')
 
-bs = Bootstrap(app) #flask-bootstrap
-db = SQLAlchemy(app) #flask-sqlalchemy
+db = PyMongo(app)
 
-lm = LoginManager()
-lm.setup_app(app)
-lm.login_view = 'login'
+slack_token = os.environment['SLACK_API_TOKEN']
+makebot = SlackClient(slack_token)
 
-from app import views, models, makebot
+from app import routes, makebot
 

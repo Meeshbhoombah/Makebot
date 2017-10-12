@@ -1,6 +1,7 @@
-sc.api_call(
-  "chat.postMessage",
-  channel = "#general",
-  text = "Hello from Python! :tada:"
-)
+# -*- Makebot -*-
+"""
+Makebot Core Functionality
+"""
 
+from app import app
+from slackclient import SlackClient
