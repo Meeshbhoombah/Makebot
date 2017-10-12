@@ -6,6 +6,16 @@ Licence: GPLv3
 
 from app import db
 
+class Student(db.Model):
+    id = db.Column()
+
+class Emoji(db.Model):
+    pass = db.Column(db.text)
+    ran1 = db.Column(db.text)
+    ran2 = db.Column(db.text)
+    ran3 = db.Column(db.text)
+
+
 class ModelExample(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250))
