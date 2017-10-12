@@ -9,8 +9,10 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.pymongo import PyMongo
 from flask.ext.login import LoginManager
+from slackclient import SlackClient
 
 app = Flask(__name__)
+makebot = SlackClient(SLACK_TOKEN) 
 
 #Configuration of application, see configuration.py, choose one and uncomment.
 #app.config.from_object('configuration.ProductionConfig')
@@ -24,4 +26,5 @@ lm = LoginManager()
 lm.setup_app(app)
 lm.login_view = 'login'
 
-from app import views, models
+from app import views, models, makebot
+
