@@ -3,7 +3,7 @@
 Makebot Configruation
 """
 
-import os
+import sys
 
 from flask import Flask
 from slackclient import SlackClient
@@ -16,10 +16,12 @@ app = Flask(__name__)
 app.config.from_object('app.configuration.DevelopmentConfig')
 #app.config.from_object('configuration.TestingConfig')
 
-db = PyMongo(app)
+mongo = PyMongo(app)
 
-slack_token = os.environment['SLACK_API_TOKEN']
-makebot = SlackClient(slack_token)
+sys.dont_write_bytecode = True
 
-from app import routes, makebot
+from app import routes
+from makebot import core
+
+core.setup()
 
