@@ -1,13 +1,14 @@
 # -*- encoding: utf-8 -*-
 """
-Makebot Configruation
+Config
 """
 
 import sys
+import os
 
 from flask import Flask
 from slackclient import SlackClient
-from flask_pymongo import PyMongo
+from pymongo import MongoClient
 
 app = Flask(__name__)
 
@@ -16,12 +17,7 @@ app = Flask(__name__)
 app.config.from_object('app.configuration.DevelopmentConfig')
 #app.config.from_object('configuration.TestingConfig')
 
-mongo = PyMongo(app)
-
 sys.dont_write_bytecode = True
 
-from app import routes
-from makebot import core
-
-core.setup()
+from app import routes, makebot
 
