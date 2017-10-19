@@ -15,9 +15,14 @@ studentdb = connection.users.students
 instructordb = connection.users.instructors
 
 # initalizing Slackbot w/ SlackClient
-slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
+slack_client = SlackClient(os.environ.get('SLACK_USER_TOKEN'))
 
 """ Propogate Database of team members """
+
+# remove current collections
+studentdb.remove()
+instructordb.remove()
+
 team_data = slack_client.api_call('users.list')
 members = team_data['members']
 
@@ -34,12 +39,16 @@ for member in members:
             'name'     : slack_name,
             'email'    : slack_email
         }
-                
-        if 'student' in slack_email:
-            studentdb.insert(user_data)
-        else:
-            instructordb.insert(user_data)
+
+        # TODO - Remove comments for production
+        #if 'student' in slack_email:
+        #    studentdb.insert(user_data)
+        #else:
+        #    instructordb.insert(user_data)
+
+        studentdb.insert(user_data)
 
 """ Plugins """
 from app.plugins import signin
+
 
