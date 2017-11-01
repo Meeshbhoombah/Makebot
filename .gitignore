@@ -1,7 +1,14 @@
-# General Mac Files
-.DS_Store
-*.swp
+# proj
+.db
+/venv
 
-# Don't fuck w/ my keys
-tokens.js
-*.rdb
+# mac
+.DS_Store
+
+# vim
+*.swp
+*.swo
+
+# python
+*.pyc
+
