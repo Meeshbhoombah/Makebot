@@ -1,4 +1,4 @@
-[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Stars)](/Meeshbhoombah/makebot/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Stars)](https://github.com/Meeshbhoombah/makebot/stargazers)
 ---
 
 # Makebot
