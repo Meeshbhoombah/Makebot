@@ -1,3 +1,6 @@
+[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Stars)](/Meeshbhoombah/makebot/stargazers)
+---
+
 # Makebot
 A bot for Make School's Product College Slack, built by students, for
 students.

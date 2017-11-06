@@ -1,17 +1,10 @@
 # -*- encoding: utf-8 -*-
-"""
-Python Aplication Template
-Licence: GPLv3
-"""
+""" Starting point for Makebot
 
-import os
+Creates an instance 
+"""
 from app import app
 
-#----------------------------------------
-# launch
-#----------------------------------------
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+if __name__ == '__main__':
+    app.run()
 
