@@ -5,16 +5,16 @@ Defines the routes for the web app and routes Slack client requests
 to the correct endpoints based on the data passed to the route.
 """
 from flask import Flask
-app = (__name__)
-
-""" MAKEBOT """
-@app.route('/makebot/sign-in')
-def sign_in:
-    return 'Sign in'
+app = Flask(__name__)
 
 
 """ WEB APP """
 @app.route('/')
-def index:
+def index():
     return 'Hello World!'
 
+
+""" MAKEBOT """
+@app.route('/makebot/sign-in')
+def sign_in():
+    return 'Sign in'
