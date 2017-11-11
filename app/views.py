@@ -14,7 +14,20 @@ def index():
     return 'Hello World!'
 
 
-""" MAKEBOT """
-@app.route('/makebot/sign-in')
-def sign_in():
-    return 'Sign in'
+@app.route('/sign-in')
+def index():
+    return 'Sign-in dashboard'
+
+
+""" DB """
+# CREATE student
+@app.route('/new/student')
+def create_new_student():
+    return 'New student'
+
+
+# CREATE instructor
+@app.route('/new/instructor')
+def create_new_instructor():
+    return 'New instructor'
+

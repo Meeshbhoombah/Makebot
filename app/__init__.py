@@ -3,7 +3,12 @@
 
 """
 from flask import Flask
+from pymongo import MongoClient
+
+# Initalization #
 app = Flask(__name__, instance_relative_config =  True)
+
+client = MongoClient('localhost', 27017)
 
 # Configuration #
 from app import views
